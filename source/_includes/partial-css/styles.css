@@ -1,0 +1,27 @@
+html {
+	scroll-behavior: smooth;
+}
+
+.search-results-popover {
+	width: 100%;
+}
+
+#cart-dropdown {
+	margin-top: 5px!important;
+}
+
+#load-document-canvas {
+	direction: ltr;
+	display: block;
+	margin: 0 auto;
+	border-radius: 10px;
+	margin-bottom: 30px;
+}
+
+#load-document-canvas.loaded {
+
+}
+
+.cart-page-item-image {
+	max-width: 150px;
+}

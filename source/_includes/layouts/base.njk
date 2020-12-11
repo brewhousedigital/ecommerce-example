@@ -13,13 +13,32 @@
 </head>
 <body>
 
-<header class="container">
-	<div class="row justify-content-between py-3 mb-5">
-		<h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
+{% if title != "Home" %}{% endif %}
 
-		<div>
-			<a href="/posts/" class="btn btn-primary">Posts</a>
-			<a href="/about/" class="btn btn-primary">About</a>
+<header class="container {% if title != "Home" %}border-bottom mb-5{% endif %}">
+	<div class="row align-items-center justify-content-between py-3">
+		<div class="col"><h1 class="mb-0"><a href="{{ '/' | url }}" class="text-decoration-none">eCommerce</a></h1></div>
+
+		<div class="col">
+			<form class="input-group" action="/search/" method="get">
+				<input type="text"
+					   id="header-search-bar"
+					   class="form-control"
+					   placeholder="Search for a product like 'Product ABC'"
+					   aria-label="Search for Products"
+					   aria-describedby="header-search-btn"
+					   name="search">
+				<button class="btn btn-outline-secondary" type="submit" id="header-search-btn">Search</button>
+			</form>
+		</div>
+
+		<div class="col text-end">
+			<a href="/products/" class="btn btn-primary">Products</a>
+			<a href="/documents/" class="btn btn-primary">Documents</a>
+			<button class="btn btn-outline-primary dropdown-toggle" type="button" id="cart-dropdown-btn" data-bs-toggle="dropdown" aria-expanded="false">
+				{% icon "cart" %}
+			</button>
+			<ul id="cart-dropdown" class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="cart-dropdown-btn"></ul>
 		</div>
 	</div><!-- end row -->
 </header><!-- end container -->

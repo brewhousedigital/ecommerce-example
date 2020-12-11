@@ -1,0 +1,26 @@
+---
+layout: layouts/base.njk
+pdfJS: true
+---
+
+<div class="container">
+	<div class="row align-items-center mb-5">
+		<div class="col-lg-5">
+			<img src="{{ document.image }}" alt="" class="img-fluid">
+		</div>{# end col #}
+
+		<div class="col-lg-7">
+			<h1>{{ document.name }}</h1>
+			<p class="mb-5">{{ document.description }}</p>
+
+			<p>
+				<button type="button" class="btn btn-success btn-lg" data-document="{{ document.file }}">Show Document</button>
+				<a class="btn btn-outline-success btn-lg" href="{{ document.file }}" target="_blank">Download</a>
+			</p>
+		</div>{# end col #}
+	</div>{# end row #}
+
+	<div id="load-document" class="py-5"><canvas id="load-document-canvas"></canvas></div>
+</div>{# end container #}
+
+

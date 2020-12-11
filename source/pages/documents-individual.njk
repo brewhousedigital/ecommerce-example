@@ -1,0 +1,12 @@
+---
+pagination:
+  data: documents
+  size: 1
+  alias: document
+layout: layouts/document.njk
+permalink: /documents{{ document.url }}/
+eleventyComputed:
+  title: "{{ document.name }}"
+---
+
+{# You can find the template for this in "source/_includes/layouts/document.njk" #}

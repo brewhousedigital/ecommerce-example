@@ -1,0 +1,12 @@
+---
+pagination:
+  data: products
+  size: 1
+  alias: product
+layout: layouts/product.njk
+permalink: /products{{ product.url }}/
+eleventyComputed:
+  title: "{{ product.name }}"
+---
+
+{# You can find the template for this in "source/_includes/layouts/product.njk" #}

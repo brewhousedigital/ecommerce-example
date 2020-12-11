@@ -1,6 +1,16 @@
+<script src="/js/bootstrap.js"></script>
+
+{% if pdfJS %}<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>{% endif %}
+
 <script>
 	{% set js %}
-	{% include "source/_includes/partial-js/scripts.js" %}
+	{% include "source/_includes/partial-js/library-fuse.js" %}
+	{% include "source/_includes/partial-js/autocomplete.js" %}
+	{% include "source/_includes/partial-js/cart.js" %}
+	{% include "source/_includes/partial-js/add-to-cart.js" %}
+	{% include "source/_includes/partial-js/search-results.js" %}
+	{% if pdfJS %}{% include "source/_includes/partial-js/load-documents.js" %}{% endif %}
 	{% endset %}
 	{{ js | safe }}
 </script>
+

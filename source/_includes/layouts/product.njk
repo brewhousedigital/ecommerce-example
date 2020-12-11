@@ -1,0 +1,36 @@
+---
+layout: layouts/base.njk
+---
+
+<div class="container">
+	<div class="row align-items-center">
+		<div class="col-lg-5">
+			<img src="{{ product.image }}" alt="" class="img-fluid">
+		</div>{# end col #}
+
+		<div class="col-lg-7">
+			<h1>{{ product.name }}</h1>
+			<p class="mb-5">{{ product.description }}</p>
+
+
+			<form class="add-to-cart-form input-group mb-3">
+				<input type="number"
+					   class="form-control"
+					   style="max-width: 70px"
+					   aria-label="Amount of product needed"
+					   aria-describedby="add-to-cart-btn-{{ product.sku }}"
+					   placeholder="1"
+					   min="1"
+					   step="1"
+					   value="1"
+					   required>
+				<button class="btn btn-success btn-lg"
+						type="submit"
+						id="add-to-cart-btn-{{ product.sku }}"
+						data-sku="{{ product.sku }}">Add to Cart</button>
+			</form>
+
+		</div>{# end col #}
+	</div>{# end row #}
+</div>{# end container #}
+

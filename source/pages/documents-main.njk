@@ -1,0 +1,21 @@
+---
+layout: layouts/base.njk
+title: "All Documents"
+permalink: /documents/
+---
+
+<div class="container">
+	<div class="row">
+		{% for document in documents %}
+			<div class="col-lg-3">
+				<div class="card h-100">
+					<img src="{{ document.image }}" class="card-img-top" alt="{{ document.name }}">
+					<div class="card-body">
+						<h5 class="card-title">{{ document.name }}</h5>
+						<a href="/documents{{ document.url }}" class="btn btn-primary stretched-link">View</a>
+					</div>
+				</div><!-- end card -->
+			</div><!-- end col -->
+		{% endfor %}
+	</div><!-- end row -->
+</div><!-- end container -->

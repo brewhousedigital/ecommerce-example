@@ -22,8 +22,6 @@ module.exports = function(eleventyConfig) {
 
 	eleventyConfig.setDataDeepMerge(true);
 
-	eleventyConfig.addLayoutAlias("post", "source/layouts/post.njk");
-
 	eleventyConfig.addFilter("readableDate", dateObj => {
 		return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL yyyy");
 	});
@@ -42,34 +40,7 @@ module.exports = function(eleventyConfig) {
 		return array.slice(0, n);
 	});
 
-	eleventyConfig.addCollection("tagList", function(collection) {
-		let tagSet = new Set();
-		collection.getAll().forEach(function(item) {
-			if( "tags" in item.data ) {
-				let tags = item.data.tags;
 
-				tags = tags.filter(function(item) {
-					switch(item) {
-						// this list should match the `filter` list in tags.njk
-						case "all":
-						case "nav":
-						case "post":
-						case "posts":
-							return false;
-					}
-
-					return true;
-				});
-
-				for (const tag of tags) {
-					tagSet.add(tag);
-				}
-			}
-		});
-
-		// returning an array in addCollection works in Eleventy 0.5.3
-		return [...tagSet];
-	});
 
 
 
@@ -93,6 +64,11 @@ module.exports = function(eleventyConfig) {
 		return DateTime.local().toFormat("yyyy");
 	});
 
+	eleventyConfig.addShortcode("icon", function(name) {
+		/* {% icon house %} */
+		let iconName = "node_modules/bootstrap-icons/icons/" + name + ".svg";
+		return fs.readFileSync(iconName).toString();
+	})
 
 
 
@@ -100,6 +76,13 @@ module.exports = function(eleventyConfig) {
 
 	eleventyConfig.addPassthroughCopy({"source/images": "images"});
 	eleventyConfig.addPassthroughCopy({"source/manifest.json": "manifest.json"});
+	eleventyConfig.addPassthroughCopy({"source/_includes/partial-css/bootstrap.css": "css/bootstrap.css"});
+	eleventyConfig.addPassthroughCopy({"source/_includes/partial-js/bootstrap.js": "js/bootstrap.js"});
+	eleventyConfig.addPassthroughCopy({"source/_includes/partial-js/library-pdfjs.js": "js/library-pdfjs.js"});
+
+	// Fake JSON APIs
+	eleventyConfig.addPassthroughCopy({"source/_data/products.json": "api/products.json"});
+	eleventyConfig.addPassthroughCopy({"source/_data/documents.json": "api/documents.json"});
 
 
 
