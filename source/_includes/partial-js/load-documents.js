@@ -1,10 +1,12 @@
+// Add event listeners to all the "show document" buttons
 if(document.querySelector("[data-document]") !== null) {
 	document.querySelectorAll("[data-document]").forEach(function(el) {
 		el.addEventListener("click", function() {
-			let thisDocument = el.dataset.document;
+			let thisDocument = el.getAttribute("data-document");
 
-
-
+			// if the canvas exists, render the PDF
+			// This code comes from PDF JS from Mozilla
+			// https://mozilla.github.io/pdf.js/
 			if(document.getElementById("load-document") !== null) {
 				let documentCanvas = document.getElementById("load-document-canvas");
 

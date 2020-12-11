@@ -2,6 +2,10 @@ html {
 	scroll-behavior: smooth;
 }
 
+main {
+	min-height: 90vh;
+}
+
 .search-results-popover {
 	width: 100%;
 }
@@ -13,13 +17,8 @@ html {
 #load-document-canvas {
 	direction: ltr;
 	display: block;
-	margin: 0 auto;
+	margin: 0 auto 30px auto;
 	border-radius: 10px;
-	margin-bottom: 30px;
-}
-
-#load-document-canvas.loaded {
-
 }
 
 .cart-page-item-image {

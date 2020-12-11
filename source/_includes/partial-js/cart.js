@@ -19,6 +19,7 @@ function getCart() {
 // Update the localstorage cart with new product data. Should be an array
 function updateCart(data) {
 	createCart();
+	// Sort this alphabetically
 	data.sort();
 	localStorage.setItem("cart", JSON.stringify(data));
 }
@@ -42,9 +43,7 @@ function showEmptyCartMessage() {
 // Remove an item from the user's cart
 function deleteCartSpecificItem(item) {
 	let cart = getCart();
-	if(item !== undefined) {
-		cart.splice(cart.indexOf(item), 1);
-	}
+	if(item !== undefined) cart.splice(cart.indexOf(item), 1);
 	updateCart(cart);
 
 	if(cart.length === 0) showEmptyCartMessage();
@@ -54,9 +53,7 @@ function deleteCartSpecificItem(item) {
 // Remove all of a specific item from the user's cart
 function deleteCartSpecificItemAll(item) {
 	let cart = getCart();
-	if(item !== undefined) {
-		cart = cart.filter(function(product) {return product !== item});
-	}
+	if(item !== undefined) cart = cart.filter(function(product) {return product !== item});
 	updateCart(cart);
 
 	if(cart.length === 0) showEmptyCartMessage();
@@ -69,6 +66,7 @@ function getStringOccurrence(array, value) {
 }
 
 
+// When user clicks the cart button, generate an up-to-date list of their products
 function updateCartDropdown() {
 	// Get the cart from localstorage
 	let cart = getCart();
@@ -79,6 +77,7 @@ function updateCartDropdown() {
 		// Removes duplicate values
 		let filterSingleItems = [...new Set(cart)];
 
+		// Loop through to generate the HTML
 		filterSingleItems.forEach(function(product) {
 			let totalAmount = getStringOccurrence(cart, product);
 
@@ -90,6 +89,7 @@ function updateCartDropdown() {
 			`;
 		});
 
+		// Add a divider and a cart button at the bottom
 		html += `<li><hr class="dropdown-divider"></li>`;
 		html += `<li class="text-center"><a class="btn btn-success" href="/cart/">View Your Cart</a></li>`;
 
@@ -97,6 +97,7 @@ function updateCartDropdown() {
 		html = `<li><a class="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">There are no items in your cart</a></li>`;
 	}
 
+	// Insert the html into the cart dropdown
 	document.getElementById("cart-dropdown").innerHTML = html;
 }
 
@@ -116,6 +117,7 @@ if(document.getElementById("cart-page") !== null) {
 
 	let html = "";
 
+	// If there are products in the cart, generate the list for the user to see
 	if(cart.length > 0) {
 		// Retrieve product data
 		fetch('/api/products.json')
@@ -124,15 +126,18 @@ if(document.getElementById("cart-page") !== null) {
 				// Removes duplicate values from user's cart
 				let filterSingleItems = [...new Set(cart)];
 
+				// Loop through each product and generate a row, while also mapping the product data to each item
 				filterSingleItems.forEach(function(cartProduct) {
 					let totalAmount = getStringOccurrence(cart, cartProduct);
 
+					// These are the only three data points showing on the cart page. You can add more here
 					let productInfo = {
 						name: "",
 						description: "",
 						image: ""
 					};
 
+					// Loop through the product JSON and map the data points
 					allProducts.forEach(function(eachProduct) {
 						if(eachProduct.sku === cartProduct) {
 							productInfo.name = eachProduct.name;
@@ -141,7 +146,7 @@ if(document.getElementById("cart-page") !== null) {
 						}
 					});
 
-
+					// Build the HTML template
 					html += `
 					<div class="cart-product-row row align-items-center justify-content-between py-3 border-bottom">
 						<div class="col-auto cart-page-item-image">
@@ -176,6 +181,7 @@ if(document.getElementById("cart-page") !== null) {
 }
 
 
+// When user clicks on the "Delete Cart" button, clear everything out
 if(document.querySelector("[data-deleteCart]") !== null) {
 	document.querySelector("[data-deleteCart]").addEventListener("click", function() {
 		deleteCart();
@@ -184,7 +190,9 @@ if(document.querySelector("[data-deleteCart]") !== null) {
 }
 
 
+// When user clicks on "Delete Item" or "Delete All items", it will only delete that specific item from their cart
 function dynamicRemoveItemsFromCart() {
+	// Deletes a single item
 	if(document.querySelector("[data-delete-item]") !== null) {
 		document.querySelectorAll("[data-delete-item]").forEach(function(el) {
 			el.addEventListener("click", function() {
@@ -192,9 +200,11 @@ function dynamicRemoveItemsFromCart() {
 				deleteCartSpecificItem(sku);
 				animateActionButton(this);
 
+				// Reduce the quantity on screen so the user knows that the number has gone down
 				let quantity = parseInt(this.closest(".cart-product-row").querySelector(".cart-product-row-total").innerText);
 				quantity--;
 
+				// If the quantity is less than 1, remove the row. Otherwise put the updated number back
 				if(quantity > 0) {
 					this.closest(".cart-product-row").querySelector(".cart-product-row-total").innerText = quantity;
 				} else {
@@ -204,6 +214,7 @@ function dynamicRemoveItemsFromCart() {
 		});
 	}
 
+	// Deletes all items of the same type
 	if(document.querySelector("[data-delete-all-items]") !== null) {
 		document.querySelectorAll("[data-delete-all-items]").forEach(function(el) {
 			el.addEventListener("click", function() {

@@ -1,3 +1,4 @@
+// This adds a nice checkmark to the button, letting users know their action was successful
 function animateActionButton(el) {
 	let thisText = el.innerText;
 	let thisWidth = el.offsetWidth;
@@ -13,26 +14,30 @@ function animateActionButton(el) {
 	}, 2000);
 }
 
+
+// Save a product into the cart. The
 if(document.querySelector(".add-to-cart-form") !== null) {
 	document.querySelectorAll(".add-to-cart-form").forEach(function(el) {
 		el.addEventListener("submit", function(e) {
+			// Stop the form from refreshing
 			e.preventDefault();
-
-			// If cart is not created on user's localstorage, create one
-			createCart();
 
 			// Get the cart from localstorage
 			let cart = getCart();
 
-			// Get the button
+			// Get the button element
 			let button = this.querySelector("[data-sku]");
 
-			// Add the product to cart
+			// Get the number of products the user wanted
 			let amount = parseInt(this.querySelector("input").value);
-			let product = button.dataset.sku;
 
+			// Get the SKU number from the product button
+			let product = button.getAttribute("data-sku");
+
+			// If the number was modified to be text or below 1, set to 1
 			if(amount < 1 || isNaN(amount)) amount = 1;
 
+			// Loop through the amount and add that many products to the cart
 			for (let i = 0; i < amount; i++) {
 				cart.push(product);
 			}
@@ -40,7 +45,7 @@ if(document.querySelector(".add-to-cart-form") !== null) {
 			// Update the localstorage cart
 			updateCart(cart);
 
-			// Animate the button
+			// Disable the button until the function has completed
 			animateActionButton(button);
 		});
 	});

@@ -1,3 +1,5 @@
+<footer class="text-center py-5 border-top">An 11ty template for eCommerce sites</footer>
+
 <script src="/js/bootstrap.js"></script>
 
 {% if pdfJS %}<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>{% endif %}
@@ -11,6 +13,7 @@
 	{% include "source/_includes/partial-js/search-results.js" %}
 	{% if pdfJS %}{% include "source/_includes/partial-js/load-documents.js" %}{% endif %}
 	{% endset %}
+
 	{{ js | safe }}
 </script>
 

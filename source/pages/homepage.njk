@@ -15,18 +15,19 @@ permalink: /
 		<div class="carousel-item">
 			<img src="/images/carousel/carousel-3.png" class="d-block w-100" alt="...">
 		</div>
-	</div><!-- end carousel inner -->
+	</div>{# end carousel inner #}
 
 	<a class="carousel-control-prev" href="#carousel" role="button" data-bs-slide="prev">
 		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 		<span class="visually-hidden">Previous</span>
-	</a>
+	</a>{# end prev arrow #}
 
 	<a class="carousel-control-next" href="#carousel" role="button" data-bs-slide="next">
 		<span class="carousel-control-next-icon" aria-hidden="true"></span>
 		<span class="visually-hidden">Next</span>
-	</a>
-</div><!-- end carousel -->
+	</a>{# end next arrow #}
+</div>{# end carousel #}
+
 
 <div class="container pb-5">
 	<h2>Products</h2>
@@ -40,8 +41,8 @@ permalink: /
 						<h5 class="card-title">{{ product.name }}</h5>
 						<a href="/products{{ product.url }}" class="btn btn-primary stretched-link">View</a>
 					</div>
-				</div><!-- end card -->
-			</div><!-- end col -->
+				</div>{# end card #}
+			</div>{# end col #}
 		{% endfor %}
 
 
@@ -51,11 +52,10 @@ permalink: /
 					<p style="font-size: 50px">{% icon "cart" %}</p>
 					<a href="/products/" class="btn stretched-link">See all products</a>
 				</div>
-			</div><!-- end card -->
-		</div><!-- end col -->
-	</div><!-- end row -->
-</div><!-- end container -->
-
+			</div>{# end card #}
+		</div>{# end col #}
+	</div>{# end row #}
+</div>{# end container #}
 
 
 <div class="container pb-5">
@@ -70,8 +70,8 @@ permalink: /
 						<h5 class="card-title">{{ document.name }}</h5>
 						<a href="/documents{{ document.url }}" class="btn btn-primary stretched-link">View</a>
 					</div>
-				</div><!-- end card -->
-			</div><!-- end col -->
+				</div>{# end card #}
+			</div>{# end col #}
 		{% endfor %}
 
 
@@ -81,7 +81,7 @@ permalink: /
 					<p style="font-size: 50px">{% icon "file-earmark-richtext" %}</p>
 					<a href="/documents/" class="btn stretched-link">See all documents</a>
 				</div>
-			</div><!-- end card -->
-		</div><!-- end col -->
-	</div><!-- end row -->
-</div><!-- end container -->
+			</div>{# end card #}
+		</div>{# end col #}
+	</div>{# end row #}
+</div>{# end container #}

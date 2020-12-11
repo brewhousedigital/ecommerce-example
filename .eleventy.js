@@ -78,7 +78,6 @@ module.exports = function(eleventyConfig) {
 	eleventyConfig.addPassthroughCopy({"source/manifest.json": "manifest.json"});
 	eleventyConfig.addPassthroughCopy({"source/_includes/partial-css/bootstrap.css": "css/bootstrap.css"});
 	eleventyConfig.addPassthroughCopy({"source/_includes/partial-js/bootstrap.js": "js/bootstrap.js"});
-	eleventyConfig.addPassthroughCopy({"source/_includes/partial-js/library-pdfjs.js": "js/library-pdfjs.js"});
 
 	// Fake JSON APIs
 	eleventyConfig.addPassthroughCopy({"source/_data/products.json": "api/products.json"});
